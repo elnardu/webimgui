@@ -1,4 +1,5 @@
 import distutils.command.build
+import distutils.command.sdist
 import os
 import subprocess
 
@@ -31,6 +32,12 @@ class build(distutils.command.build.build):
     sub_commands = [_sub_command] + _sub_commands
 
 
+class sdist(distutils.command.sdist.sdist):
+    _sub_command = ("build_assets", None)
+    _sub_commands = distutils.command.sdist.sdist.sub_commands
+    sub_commands = [_sub_command] + _sub_commands
+
+
 setup(
     name="webimgui",
     version="0.0.1",
@@ -42,7 +49,7 @@ setup(
     description="Python framework for simple webapps and dashboards",
     install_requires=REQS,
     url="https://github.com/elnardu/webimgui",
-    python_requires='>=3.6',
+    python_requires=">=3.6",
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",
         "Intended Audience :: Developers",
@@ -54,5 +61,5 @@ setup(
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3 :: Only",
     ],
-    cmdclass={"build_assets": build_assets, "build": build},
+    cmdclass={"build_assets": build_assets, "build": build, "sdist": sdist},
 )
