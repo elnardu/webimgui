@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 
 
 def main_dashboard(session: Session):
-    # Local variables - available to the current session only
+    # Local variables - available only to the current session
 
     print("New session created:", session.session_id)
     print(session.client_data)

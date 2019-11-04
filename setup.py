@@ -3,7 +3,7 @@ import distutils.command.sdist
 import os
 import subprocess
 
-from setuptools import find_packages, setup, Command
+from setuptools import Command, find_packages, setup
 
 REQS = ["python-socketio==4.3.1", "aiohttp==3.5.4", "aiohttp-devtools==0.13.1"]
 
@@ -38,15 +38,20 @@ class sdist(distutils.command.sdist.sdist):
     sub_commands = [_sub_command] + _sub_commands
 
 
+with open("README.md", "r") as f:
+    long_description = f.read()
+
 setup(
     name="webimgui",
-    version="0.0.1",
+    version="0.0.2",
     author="Elnard Utiushev",
     author_email="elnardu2@gmail.com",
     packages=find_packages(exclude=["tests"]),
     include_package_data=True,
     license="MIT",
     description="Python framework for simple webapps and dashboards",
+    long_description=long_description,
+    long_description_content_type="text/markdown",
     install_requires=REQS,
     url="https://github.com/elnardu/webimgui",
     python_requires=">=3.6",
