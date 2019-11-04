@@ -1,6 +1,6 @@
 import sys
 
-sys.path.append("..")
+# sys.path.append("..")
 
 from webimgui import run_simple, UiBuilder
 from aiohttp import web
@@ -12,9 +12,9 @@ logger.setLevel(logging.DEBUG)
 lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
 import numpy as np
+import matplotlib.pyplot as plt
 
 def main_dashboard(session):
-    import matplotlib.pyplot as plt
 
     print("New session created:", session.session_id)
     print(session.client_data)
@@ -29,10 +29,10 @@ def main_dashboard(session):
                     ui.paragraph("Bla Bla Bla False")
 
                 with ui.same_line():
-                    ui.button("Hello", type_="primary")
-                    ui.button("Hello", type_="secondary")
-                    ui.button("Hello", type_="success")
-                    ui.button("Hello", type_="danger")
+                    ui.button("Hello", type="primary")
+                    ui.button("Hello", type="secondary")
+                    ui.button("Hello", type="success")
+                    ui.button("Hello", type="danger")
                     select_choice = ui.select("Simple select", ['Hello', 'World'])
 
                 ui.paragraph(select_choice)
@@ -57,4 +57,4 @@ def main_dashboard(session):
 app = run_simple(main_dashboard)
 
 if __name__ == "__main__":
-    web.run_app(app)
+    web.run_app(app, port=9999)

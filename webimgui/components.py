@@ -39,8 +39,8 @@ class BaseContextComponent(BaseComponent):
 
 # Interactive elements
 class Button(BaseComponent):
-    def __init__(self, ui_builder: "UiBuilder", label: str, type_: str):
-        super().__init__(ui_builder, {"label": label, "type": type_})
+    def __init__(self, ui_builder: "UiBuilder", label: str, type: str):
+        super().__init__(ui_builder, {"label": label, "type": type})
 
     def get_type(self):
         return "button"

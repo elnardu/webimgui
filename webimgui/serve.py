@@ -1,4 +1,5 @@
 from typing import Dict
+import os
 
 import socketio
 from aiohttp import web
@@ -7,6 +8,8 @@ from .exceptions import WebimguiException
 from .logging import logger
 from .page import Page
 from .session import Session
+
+STATIC_FILES_DIR = os.path.join(os.path.abspath(os.path.dirname(__file__)), "dist")
 
 
 class PageNamespace(socketio.AsyncNamespace):
@@ -60,9 +63,17 @@ class Serve:
 
         self.sio = socketio.AsyncServer(async_mode="aiohttp", cors_allowed_origins="*")
         self.app = web.Application()
+
+        async def index(request):
+            return web.FileResponse(os.path.join(STATIC_FILES_DIR, "index.html"))
+
+        self.app.router.add_route("GET", "/", index)
         self.sio.attach(self.app)
+        self.app.router.add_static("/", path=STATIC_FILES_DIR, name="static")
+
 
         for namespace in self.routes:
             self.sio.register_namespace(
                 PageNamespace(namespace, self.routes[namespace])
             )
+

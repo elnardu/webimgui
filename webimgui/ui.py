@@ -30,8 +30,8 @@ class UiBuilder:
         return {"layout": root.build(), "state": self._interactive_elements_state}
 
     # Interactive elements
-    def button(self, label: str, type_: str = "secondary") -> bool:
-        self._add_element(Button(self, label, type_))
+    def button(self, label: str, type: str = "secondary") -> bool:
+        self._add_element(Button(self, label, type))
 
         if label not in self._interactive_elements_state:
             self._interactive_elements_state[label] = False
