@@ -1,3 +1,3 @@
-import logging 
+import logging
 
-logger = logging.getLogger('webimgui')
+logger = logging.getLogger("webimgui")

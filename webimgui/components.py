@@ -54,6 +54,14 @@ class Select(BaseComponent):
         return "select"
 
 
+class Checkbox(BaseComponent):
+    def __init__(self, ui_builder: "UiBuilder", label: str):
+        super().__init__(ui_builder, {"label": label})
+
+    def get_type(self):
+        return "checkbox"
+
+
 class Slider(BaseComponent):
     def __init__(
         self,
@@ -132,6 +140,17 @@ class Container(BaseContextComponent):
         self.ui_builder._pop_element_from_stack()
 
 
+class HorizontalCenter(BaseContextComponent):
+    def get_type(self):
+        return "hcenter"
+
+    def __enter__(self):
+        self.ui_builder._push_element_to_stack(self)
+
+    def __exit__(self, type, value, tb):
+        self.ui_builder._pop_element_from_stack()
+
+
 class Row(BaseContextComponent):
     def get_type(self):
         return "row"
@@ -167,11 +186,11 @@ class FlexboxLine(BaseContextComponent):
     def __exit__(self, type, value, tb):
         self.ui_builder._pop_element_from_stack()
 
-# Plots 
+
+# Plots
 class SVG(BaseComponent):
     def __init__(self, ui_builder: "UiBuilder", svg: str):
         super().__init__(ui_builder, {"svg": svg})
 
     def get_type(self):
         return "svg"
-

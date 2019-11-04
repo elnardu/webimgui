@@ -1,9 +1,24 @@
 from io import StringIO
 from typing import Dict, List
 
-from .components import (H1, H2, H3, SVG, BaseContextComponent, Button, Column,
-                         Container, FlexboxLine, Paragraph, RangeSlider, Row,
-                         Select, Slider)
+from .components import (
+    H1,
+    H2,
+    H3,
+    SVG,
+    BaseContextComponent,
+    Button,
+    Checkbox,
+    Column,
+    Container,
+    FlexboxLine,
+    HorizontalCenter,
+    Paragraph,
+    RangeSlider,
+    Row,
+    Select,
+    Slider,
+)
 
 
 class UiBuilder:
@@ -47,6 +62,14 @@ class UiBuilder:
 
         return self._interactive_elements_state[label]
 
+    def checkbox(self, label: str) -> bool:
+        self._add_element(Checkbox(self, label))
+
+        if label not in self._interactive_elements_state:
+            self._interactive_elements_state[label] = False
+
+        return self._interactive_elements_state[label]
+
     def slider(
         self, label: str, min: float = 0.0, max: float = 100.0, step: float = 1.0
     ) -> float:
@@ -85,6 +108,9 @@ class UiBuilder:
     # Flow control elements
     def same_line(self) -> FlexboxLine:
         return FlexboxLine(self)
+
+    def center(self) -> HorizontalCenter:
+        return HorizontalCenter(self)
 
     def row(self) -> Row:
         return Row(self)

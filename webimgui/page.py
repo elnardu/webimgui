@@ -2,6 +2,7 @@ from typing import Callable
 
 from .session import Session
 
+
 class Page:
     def __init__(self, new_page_callable, title=None):
         self.new_page_callable = new_page_callable

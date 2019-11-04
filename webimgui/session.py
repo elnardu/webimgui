@@ -1,5 +1,6 @@
 from .ui import UiBuilder
 
+
 class Session:
     def __init__(self, page: "Page", session_id: str):
         self.page: "Page" = page
@@ -23,7 +24,7 @@ class Session:
         return ui._build()
 
     def _handle_action(self, action):
-        self._interactive_elements_state[action['label']] = action['data']
+        self._interactive_elements_state[action["label"]] = action["data"]
 
     def set_update_interval(self, update_interval):
         assert (

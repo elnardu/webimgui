@@ -4,6 +4,7 @@ const MAPPING = {
   // Interactive
   button: () => import("./Button.vue"),
   select: () => import("./Select.vue"),
+  checkbox: () => import("./Checkbox.vue"),
   slider: () => import("./Slider.vue"),
   "range-slider": () => import("./RangeSlider.vue"),
 
@@ -17,6 +18,7 @@ const MAPPING = {
   "container-fluid": () => import("./Container.vue"),
   row: () => import("./Row.vue"),
   column: () => import("./Column.vue"),
+  hcenter: () => import("./Hcenter.vue"),
   "flexbox-line": () => import("./FlexboxLine.vue"),
 
   // Plots

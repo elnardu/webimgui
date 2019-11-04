@@ -71,9 +71,7 @@ class Serve:
         self.sio.attach(self.app)
         self.app.router.add_static("/", path=STATIC_FILES_DIR, name="static")
 
-
         for namespace in self.routes:
             self.sio.register_namespace(
                 PageNamespace(namespace, self.routes[namespace])
             )
-
