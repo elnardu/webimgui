@@ -1,0 +1,2 @@
+class WebimguiException(BaseException):
+    pass
